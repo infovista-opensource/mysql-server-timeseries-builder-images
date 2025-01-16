@@ -1,0 +1,56 @@
+name: Builder docker image for mysql-server-timeseries
+  
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '[0-9.]+'
+  pull_request:
+    branches:
+      - '*'
+  
+      
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  
+jobs:
+
+  build-and-push-image:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./mysql8-build-lnx8
+          file: ./mysql8-build-lnx8/Dockerfile
+          push: true
+          tags: mysql8-build-lnx8:${{ github.ref_name }}
+          labels: ${{ steps.meta.outputs.labels }}
