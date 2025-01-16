@@ -1,17 +1,11 @@
 name: Builder docker image for mysql-server-timeseries
   
 on:
-  workflow_dispatch:
+  # Triggers the pipeline when pushing a new tag
   push:
-    branches:
-      - '*'
     tags:
-      - '[0-9.]+'
-  pull_request:
-    branches:
-      - '*'
-  
-      
+      - **
+       
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
