@@ -2,6 +2,7 @@ name: Builder docker image for mysql-server-timeseries
   
 on:
   # Triggers the pipeline when pushing a new tag
+  workflow_dispatch:
   push:
     tags:
       - '**'
