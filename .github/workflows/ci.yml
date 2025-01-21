@@ -45,4 +45,4 @@ jobs:
           context: ./mysql8-build-lnx8
           file: ./mysql8-build-lnx8/Dockerfile
           push: true
-          tags: infovista-opensource/mysql8-build-lnx8:{{ github.ref_name }}
+          tags: infovista-opensource/mysql8-build-lnx8:${{ github.ref_name }}
