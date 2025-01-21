@@ -9,7 +9,7 @@ on:
        
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REPOSITORY_NAME: ${{ github.repository }}
   
 jobs:
 
@@ -32,11 +32,11 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/infovista-opensource/mysql8-build-lnx8
+      # - name: Extract metadata (tags, labels) for Docker
+      #   id: meta
+      #   uses: docker/metadata-action@v5
+      #   with:
+      #     images: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/mysql8-build-lnx8
 
       - name: Build and push Docker image
         id: push
@@ -45,6 +45,5 @@ jobs:
           context: ./mysql8-build-lnx8
           file: ./mysql8-build-lnx8/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-#          tags: infovista-opensource/mysql8-build-lnx8:${{ github.ref_name }}
+          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/mysql8-build-lnx8:${{ github.ref_name }}
+          # labels: ${{ steps.meta.outputs.labels }}
