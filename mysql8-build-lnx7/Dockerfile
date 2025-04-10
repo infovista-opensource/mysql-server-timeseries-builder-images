@@ -1,11 +1,11 @@
 ##########################################################################################
-# Dockerfile for building mysql-server-timeseries on Oracle Linux 7
+# Dockerfile for building mysql-server-timeseries 8.0 on Oracle Linux 7
 ##########################################################################################
 
 FROM library/oraclelinux:7
 
 LABEL org.opencontainers.image.authors="bplougonven@infovista.com"
-LABEL org.opencontainers.image.description="Builder image for MySQL / Sparrow based on Oracle Linux 7 latest version"
+LABEL org.opencontainers.image.description="Builder image for MySQL Timeseries Server 8.0 based on Oracle Linux 7 latest version."
 
 RUN echo INSTALLING 64 BITS TOOLS AND LIBRARIES; \
     yum install -q -y gcc gcc-c++.x86_64 glibc-devel.x86_64; \
