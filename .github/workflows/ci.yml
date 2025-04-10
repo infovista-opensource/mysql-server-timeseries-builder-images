@@ -32,18 +32,21 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/mysql8-build-lnx8
-
-      - name: Build and push Docker image
-        id: push
+      - name: Build and push Docker image for OL8
+        id: push-OL8
         uses: docker/build-push-action@v5
         with:
           context: ./mysql8-build-lnx8
           file: ./mysql8-build-lnx8/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/mysql8-build-lnx8:${{ github.ref_name }}
-          # labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and push Docker image for OL9
+        id: push-OL9
+        uses: docker/build-push-action@v5
+        with:
+          context: ./mysql8-build-lnx9
+          file: ./mysql8-build-lnx9/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}/mysql8-build-lnx9:${{ github.ref_name }}
+  
