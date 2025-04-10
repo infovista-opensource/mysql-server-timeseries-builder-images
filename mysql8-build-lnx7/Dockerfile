@@ -1,5 +1,5 @@
 ##########################################################################################
-# Dockerfile for building mysql-server-timeseries on Oracle Linux 7
+# Dockerfile for building mysql-server-timeseries 8.4 on Oracle Linux 7
 ##########################################################################################
 
 FROM library/oraclelinux:7

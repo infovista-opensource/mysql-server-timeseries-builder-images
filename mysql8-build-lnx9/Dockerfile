@@ -1,11 +1,11 @@
 ##########################################################################################
-# Dockerfile for building mysql-server-timeseries on Oracle Linux 9
+# Dockerfile for building mysql-server-timeseries 8.4 on Oracle Linux 9
 ##########################################################################################
 
 FROM library/oraclelinux:9
 
 LABEL org.opencontainers.image.authors="bplougonven@infovista.com"
-LABEL org.opencontainers.image.description="Builder image for MySQL / Sparrow based on Oracle Linux 9 latest version"
+LABEL org.opencontainers.image.description="Builder image for MySQL Timeseries Server 8.4 based on Oracle Linux 9 latest version"
 
 RUN echo INSTALLING 64 BITS TOOLS AND LIBRARIES; \
     yum install -q -y gcc gcc-c++.x86_64 glibc-devel.x86_64; \
@@ -18,7 +18,7 @@ RUN echo INSTALLING 64 BITS TOOLS AND LIBRARIES; \
     echo INSTALLING WGET, ZIP, UNZIP AND TAR; \
     yum install -q -y wget tar zip unzip; \
     yum install -q -y make; \
-    echo INSTALLING openssl development package; \
+    echo INSTALLING OPENSSL DEVELOPMENT PACKAGE; \
     yum install -q -y openssl-devel; \
     echo INSTALLING MISC TOOLS; \
     yum install -q -y dos2unix which file hostname; \
