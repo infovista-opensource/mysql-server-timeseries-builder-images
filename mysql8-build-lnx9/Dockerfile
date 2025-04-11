@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.description="Builder image for MySQL Timeseries S
 RUN echo INSTALLING 64 BITS TOOLS AND LIBRARIES; \
     yum install -q -y gcc gcc-c++.x86_64 glibc-devel.x86_64; \
     yum install -q -y libaio-devel libudev-devel ncurses-devel.x86_64 bison.x86_64; \
-    yum install -q -y gcc-toolset-13-gcc gcc-toolset-13-gcc-c++ gcc-toolset-13-binutils gcc-toolset-13-annobin-annocheck gcc-toolset-13-annobin-plugin-gcc; \
+    yum install -q -y gcc-toolset-12-gcc gcc-toolset-12-gcc-c++ gcc-toolset-12-binutils gcc-toolset-12-annobin-annocheck gcc-toolset-12-annobin-plugin-gcc; \
     echo INSTALLING libtirpc-devel; \
     dnf --enablerepo=ol9_codeready_builder install libtirpc-devel; \
     echo INSTALLING RPCGEN; \
